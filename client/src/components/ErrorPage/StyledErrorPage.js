@@ -16,10 +16,9 @@ export const Img = styled.img`
 `
 
 export const TextWrapper = styled.div`
-   width: 400px;
    height: 300px;
    margin-left: 60px;
-
+   
    display: flex;
    flex-direction: column;
    justify-content: center;

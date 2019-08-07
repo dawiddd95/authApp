@@ -23,6 +23,9 @@ const LoginUserFormContainer = () => {
                .string()
                .email()
                .required('Email is required'),
+            password: Yup
+               .string()
+               .required('Password is required'),
          })}
          onSubmit={values => handleOnSubmit(values)}
       />

@@ -1,6 +1,3 @@
-// w odstepie w jakim jest przycisk do tekstu dac ten naglowek or i dac facebook oraz google
-// i na koniec create account  => do rejestracji
-
 import React from 'react';
 import * as S from './StyledAuthLogin';
 

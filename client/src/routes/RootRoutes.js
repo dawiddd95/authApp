@@ -10,8 +10,7 @@ const RootRoutes = () => {
          <Switch>
             <Route exact path='/' render={() => <Redirect to='/auth/login' />} />
             <Route path='/auth' component={AuthRoutes} /> 
-            {/* <Route path='/login' component={Login} /> 
-            <Route path='/signup' component={SignUp} /> */}
+            {/* <Route path='/home' component={} /> */}
             <Route component={ErrorPage} />
          </Switch>
       </Router>

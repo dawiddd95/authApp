@@ -55,22 +55,3 @@ export const SocialIcon = styled.img`
    cursor: pointer;
 `
 
-export const LinkWrapper = styled.div`
-   margin-top: 50px;
-
-   display: flex;
-   justify-content: center;
-
-   a {
-      color: #f5222d;
-      font-size: 16px;
-      font-family: segoe;
-      text-decoration: none;
-      transition: .3s;
-
-      :hover {
-         color: color: rgba(245,34,45,0.8);
-         transition: .3s;
-      }
-   }
-`

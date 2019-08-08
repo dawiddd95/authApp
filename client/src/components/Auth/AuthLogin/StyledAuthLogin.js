@@ -31,3 +31,23 @@ export const Header = styled.h1`
    color: rgba(0,0,0,0.85);
    text-align: center;
 `
+
+export const LinkWrapper = styled.div`
+   margin-top: 30px;
+   
+   display: flex;
+   justify-content: center;
+
+   a {
+      color: #f5222d;
+      font-size: 16px;
+      font-family: segoe;
+      text-decoration: none;
+      transition: .3s;
+
+      :hover {
+         color: color: rgba(245,34,45,0.8);
+         transition: .3s;
+      }
+   }
+`

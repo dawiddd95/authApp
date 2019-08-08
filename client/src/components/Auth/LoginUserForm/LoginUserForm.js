@@ -1,4 +1,3 @@
-// Tutaj narazie koniec
 import React from 'react';
 import {Form, Field, ErrorMessage} from 'formik';
 import {Link} from 'react-router-dom';
@@ -41,7 +40,7 @@ const LoginUserForm = () => {
                   Remember me
                </S.Label>
                <S.ForgotPassword>
-                  <Link to='/forgot-password'>Forgot password</Link>
+                  <Link to='/auth/forgot-password'>Forgot password</Link>
                </S.ForgotPassword>
             </S.CheckboxWrapper>
             <S.Button type='submit'>Log in</S.Button>

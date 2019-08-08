@@ -7,7 +7,7 @@ const createError = require('http-errors');
 const config = require('./config');
 
 // zaimportowane pliki routów
-// const loginRouter = require('./routes/loginRoutes');
+const authRouter = require('./routes/auth');
 
 const mongoose = require('mongoose');
 mongoose.connect(config.db, {useNewUrlParser: true});
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Używanie tych routów
-// app.use(loginRouter);
+app.use(authRouter);
 
 const port = process.env.PORT || 5000;
 

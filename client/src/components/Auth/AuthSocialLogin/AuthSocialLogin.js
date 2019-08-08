@@ -1,7 +1,6 @@
 // Nie wiem jak to bedzie wygladac, dopuszczam mozliwosc zmiany calej struktury plikow dotyczacych tej autoryzacji
 
 import React from 'react';
-import {Link} from 'react-router-dom';
 import * as S from './StyledAuthSocialLogin';
 import facebookIcon from '../../../assets/img/facebook.svg';
 import googleIcon from '../../../assets/img/google.svg';
@@ -20,11 +19,6 @@ const AuthSocialLogin = () => {
             <S.SocialIcon src={googleIcon} />
             <S.SocialIcon src={twitterIcon} />
          </S.SocialIconsWrapper>
-         <S.LinkWrapper>
-            <Link to='/auth/signup'>
-               Create an account
-            </Link>
-         </S.LinkWrapper>
       </S.Wrapper>
    );
 }

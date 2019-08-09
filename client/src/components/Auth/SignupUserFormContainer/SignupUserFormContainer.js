@@ -9,20 +9,28 @@ import SignupUserForm from '../SignupUserForm/SignupUserForm';
 const LoginUserFormContainer = () => {
    const [redirect, setRedirect] = React.useState(false);
    const [email, setEmail] = React.useState('');
+   const [err, setErr] = React.useState('');
    
    const handleOnSubmit = values => {
-      axios.post('/api/auth/signup', values);
-      setEmail(values.email);
-      setRedirect(true);
+      axios.post('/api/auth/signup', values)
+      .then(res => {
+         console.log(res.data.err)
+         if(res.data.err === '') {
+            setEmail(values.email);
+            setRedirect(true);
+         } else {
+            setErr(res.data.err)
+         }
+      })
    }
 
    return ( 
       <div>
          {redirect ? (
-               <AuthEmailVerified email={email}/>
+               <AuthEmailVerified email={email} />
             ) : ( 
                <Formik
-                  component={SignupUserForm}
+                  render={props => <SignupUserForm {...props} err={err} />}
                   initialValues={{
                      name: '',
                      surname: '',
@@ -42,7 +50,7 @@ const LoginUserFormContainer = () => {
                         .required('Surname is required'),
                      email: Yup
                         .string()
-                        .email()
+                        .email('Email must be a valid email')
                         .required('Email is required'),
                      password: Yup
                         .string()

@@ -10,6 +10,7 @@ const config = require('./config');
 const authRouter = require('./routes/auth');
 
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true)
 mongoose.connect(config.db, {useNewUrlParser: true});
 
 const db = mongoose.connection;

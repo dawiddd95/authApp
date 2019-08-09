@@ -1,10 +1,9 @@
-// Tutaj narazie koniec
 import React from 'react';
 import {Form, Field, ErrorMessage} from 'formik';
 
 import * as S from './StyledSignupUserForm';
 
-const SignupUserForm = () => {
+const SignupUserForm = ({err}) => {
    return (  
       <S.Wrapper>
          <Form>
@@ -40,6 +39,9 @@ const SignupUserForm = () => {
                   name='email' 
                   component='p' 
                />
+               <S.Error>
+                  {err}
+               </S.Error>
             </S.FieldWrapper>
             <S.FieldWrapper>
                <Field 

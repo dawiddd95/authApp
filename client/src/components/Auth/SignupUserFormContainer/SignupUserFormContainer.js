@@ -14,8 +14,10 @@ const LoginUserFormContainer = () => {
    const handleOnSubmit = values => {
       axios.post('/api/auth/signup', values)
       .then(res => {
-         console.log(res.data.err)
-         if(res.data.err === '') {
+         //
+         console.log(res.data)
+         //
+         if(res.data.success) {
             setEmail(values.email);
             setRedirect(true);
          } else {
@@ -24,13 +26,17 @@ const LoginUserFormContainer = () => {
       })
    }
 
+   const handleOnInput= () => {
+      setErr('');
+   }
+
    return ( 
       <div>
          {redirect ? (
                <AuthEmailVerified email={email} />
             ) : ( 
                <Formik
-                  render={props => <SignupUserForm {...props} err={err} />}
+                  render={props => <SignupUserForm {...props} err={err} handleOnInput={handleOnInput} />}
                   initialValues={{
                      name: '',
                      surname: '',

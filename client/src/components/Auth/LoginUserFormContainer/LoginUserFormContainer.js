@@ -8,7 +8,8 @@ import LoginUserForm from '../LoginUserForm/LoginUserForm';
 const LoginUserFormContainer = () => {
    
    const handleOnSubmit = values => {
-      axios.post('', values)
+      axios.post('/api/auth/login', values)
+      .then(res => console.log(res.data))
    }
 
    return (  

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '../../../assets/img/forgot3.png';
+import background from '../../../assets/img/forgot.png';
 
 export const Wrapper = styled.div`
    width: 100%;

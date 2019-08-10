@@ -3,7 +3,7 @@ import {Form, Field, ErrorMessage} from 'formik';
 
 import * as S from './StyledSignupUserForm';
 
-const SignupUserForm = ({err}) => {
+const SignupUserForm = ({err, handleOnInput}) => {
    return (  
       <S.Wrapper>
          <Form>
@@ -31,6 +31,7 @@ const SignupUserForm = ({err}) => {
             </S.FieldWrapper>
             <S.FieldWrapper>
                <Field 
+                  onInput={handleOnInput}
                   name='email' 
                   type='text' 
                   placeholder='Email' 

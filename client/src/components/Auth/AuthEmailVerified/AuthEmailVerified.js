@@ -12,7 +12,10 @@ const AuthEmailVerified = ({email}) => {
                <S.Span>
                   {email}
                </S.Span> 
-               to confinue.
+               to confinue. If you don't see your message 
+               <S.Span>
+                  check your spam folder.
+               </S.Span>
             </S.Text>
             <S.Button>
                Resend email vertification

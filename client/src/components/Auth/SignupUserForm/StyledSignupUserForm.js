@@ -12,7 +12,8 @@ export const Wrapper = styled.div`
 
 export const FieldWrapper = styled.div`
    width: 100%;
-   height: 60px;
+   min-height: 60px;
+   height: 100%;
    margin-bottom: 8px;
    color: rgba(0,0,0,0.65);
 

@@ -14,9 +14,6 @@ const LoginUserFormContainer = () => {
    const handleOnSubmit = values => {
       axios.post('/api/auth/signup', values)
       .then(res => {
-         //
-         console.log(res.data)
-         //
          if(res.data.success) {
             setEmail(values.email);
             setRedirect(true);

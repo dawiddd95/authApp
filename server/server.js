@@ -12,7 +12,7 @@ const authRouter = require('./routes/auth');
 
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true)
-mongoose.connect(config.db, {useNewUrlParser: true});
+mongoose.connect(config.db, {useNewUrlParser: true}, { useFindAndModify: false });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

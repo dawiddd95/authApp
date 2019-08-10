@@ -30,17 +30,9 @@ router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
       const errors = validationResult(req);
       const body = req.body;
       const signupData = new Signup({...body, key: uuid.v4()});
-      
-      // scieżka get do obslugi weryfikacji ktora mam wpisane: api/auth/:id/verify/:hash
-      // link z Pet Hotel: https://pet-hotel-prod.firebaseapp.com/__/auth/action?mode=verifyEmail&oobCode=x7tUaxjymTP0VqRMdzqbug-1y-J2mBy9i0RIz8yD_pYAAAFscfog_A&apiKey=AIzaSyDq4zY5q0Iwl61pDv_wWnm47ThM_CAgsxA&lang=en
-      // link ktory dostaje na mail:  http://localhost:5000/verify?id=undefined
-      // link ktory skomponowalem: `http://${host}/auth/verify?id=${signupData._id}&apiKey=${signupData.key}`
-      // link ktory miałem: const link = `http://${host}/verify?id=${body.key}`; 
-
-      // host ma byc na local:3000
-      // const host = req.get('host') === 'localhost:5000' ? 'localhost:3000' : req.get('host');
       const host = req.get('host');
       const link = `http://${host}/auth/verify?id=${signupData._id}&apiKey=${signupData.key}`;
+
       const mailOptions = {
          to : body.email,
          subject : "Please confirm your Email account",
@@ -63,7 +55,7 @@ router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
 
       if(errors.isEmpty()) {
          Signup.findOne({email: body.email}, (err, data) => {
-            if(data == null) {
+            if(data === null) {
                signupData.save(err => console.log(err))
                transporter.sendMail(mailOptions, (error, response) => {
                   if(error) console.log(error);
@@ -82,34 +74,37 @@ router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
 
 
 router.get('/auth/verify', (req, res) => {
-   // niech renderuje wtedy statyczny plik html
-   console.log(`${req.protocol}:/${req.get('host')}`);
-
+   const {id, apiKey} = req.query;
    const host = req.get('host');
    const link = `${req.protocol}://${host}`;
-   
-   // res.json({host: req.protocol, link: link})
 
-   // Zwraca nam ładnie nagłówek
-   res.send(`<h1>Hello there</h1>`)
-   // niech pokaze id z url i key z url
-
-
-
-
-   
-   // if(link === `http://${host}`) {
-   //    console.log("Domain is matched. Information is from Authentic email");
-   //    if(req.query.id==rand) {
-   //       console.log("email is verified");
-   //       res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-   //    } else {
-   //       console.log("email is not verified");
-   //       res.end("<h1>Bad Request</h1>");
-   //    }
-   // } else {
-   //    res.end("<h1>Request is from unknown source</h1>");
-   // }
+   if(link === `http://${host}`) {
+      Signup.findOneAndUpdate({_id: id, key: apiKey, active: false}, {active: true}, (err, data) => {
+         if(data !== null) {
+            res.send(`
+               <div style="width: 360px; height: 200px; margin: 10px auto 0 auto; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); display: flex; flex-direction: column;">
+                  <h1 style="font-weight: normal;margin: 40px 0 0 20px;font-size: 22px; font-family: Calibri">
+                     Your email has been verified
+                  </h1>
+                  <p style="padding: 10px 20px;font-size:18px;font-family:Calibri;color: rgba(0,0,0,0.8)">
+                     You can now sign in with your new account
+                  </p>
+               </div>
+            `)
+         } else {
+            res.send(`
+               <div style="width: 360px; height: 200px; margin: 10px auto 0 auto; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12); display: flex; flex-direction: column;">
+                  <h1 style="font-weight: normal;margin: 40px 0 0 20px;font-size: 22px; font-family: Calibri">
+                     Try verifying your email again
+                  </h1>
+                  <p style="padding: 10px 20px;font-size:18px;font-family:Calibri;color: rgba(0,0,0,0.8)">
+                     Your request to verify your email has expired or the link has already been used
+                  </p>
+               </div>
+            `);
+         }
+      })
+   }
 })
 
 module.exports = router;

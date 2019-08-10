@@ -1,3 +1,5 @@
+// moze nie byc w ogole potrzebne
+
 import React from 'react';
 import axios from 'axios';
 

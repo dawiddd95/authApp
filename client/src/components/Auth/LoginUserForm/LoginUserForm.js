@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import * as S from './StyledLoginUserForm';
 
-const LoginUserForm = () => {
+const LoginUserForm = ({err, handleOnInput}) => {
    return (  
       <S.Wrapper>
          <Form>
@@ -13,6 +13,7 @@ const LoginUserForm = () => {
                   name='email' 
                   type='text' 
                   placeholder='Email' 
+                  onInput={handleOnInput}
                />
                <ErrorMessage 
                   name='email' 
@@ -24,11 +25,15 @@ const LoginUserForm = () => {
                   name='password' 
                   type='password' 
                   placeholder='Password' 
+                  onInput={handleOnInput}
                />
                <ErrorMessage 
                   name='password' 
                   component='p' 
                />
+               <S.Error>
+                  {err}
+               </S.Error>
             </S.FieldWrapper>
             <S.CheckboxWrapper>
                <Field 

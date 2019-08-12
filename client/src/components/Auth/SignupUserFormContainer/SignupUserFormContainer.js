@@ -2,20 +2,26 @@ import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
-import AuthEmailVerified from '../AuthEmailVerified/AuthEmailVerified';
 import SignupUserForm from '../SignupUserForm/SignupUserForm';
 
 const LoginUserFormContainer = () => {
-   const [redirect, setRedirect] = React.useState(false);
+   // Podczas udanej rejestracji pobrac do redux jako loggedUser: name, surname, email, id, active. Czyli dispatchowac zamienic pusty obiekt loggedUser: {} na => loggedUser: {name: 's', surname: 'sdd' ...}
+   // Wtedy te dane bedziemy mogli sobie swobodnie z reduxa odebrac gdziekolwiek
+   // Wtedy redirect byc moze nie bedzie potrzebował tego obiektu state:
+
+   const [redirect, setRedirect] = React.useState('');
    const [email, setEmail] = React.useState('');
+   const [id, setId] = React.useState('');
    const [err, setErr] = React.useState('');
-   
+
    const handleOnSubmit = values => {
       axios.post('/api/auth/signup', values)
       .then(res => {
          if(res.data.success) {
-            setEmail(values.email);
+            setEmail(res.data.email);
+            setId(res.data.id)
             setRedirect(true);
          } else {
             setErr(res.data.err)
@@ -30,7 +36,10 @@ const LoginUserFormContainer = () => {
    return ( 
       <div>
          {redirect ? (
-               <AuthEmailVerified email={email} />
+               <Redirect to={{
+                  pathname: `/${id}/bookings`,
+                  state: {email: email, id}
+               }} />
             ) : ( 
                <Formik
                   render={props => <SignupUserForm {...props} err={err} handleOnInput={handleOnInput} />}

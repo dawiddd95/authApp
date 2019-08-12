@@ -6,14 +6,23 @@ import axios from 'axios';
 import ForgotPasswordForm from '../ForgotPasswordForm/ForgotPasswordForm';
 
 const ForgotPasswordFormContainer = () => {
+   const [err, setErr] = React.useState('');
    
    const handleOnSubmit = values => {
-      axios.post('', values)
+      axios.post('/api/auth/forgot-password', values)
+      .then(res => {
+         if(res.data.success) setErr('');
+         else setErr(res.data.err)
+      })
+   }
+
+   const handleOnInput= () => {
+      setErr('');
    }
 
    return (  
       <Formik
-         component={ForgotPasswordForm}
+      render={props => <ForgotPasswordForm {...props} err={err} handleOnInput={handleOnInput} />}
          initialValues={{
             email: '',
          }}

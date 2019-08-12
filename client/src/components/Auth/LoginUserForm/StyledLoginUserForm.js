@@ -51,6 +51,14 @@ export const FieldWrapper = styled.div`
    }
 `
 
+export const Error = styled.p`
+   margin-right: auto;
+   margin-left: 5px;
+   font-family: 'segoe';
+   font-size: 14px;
+   color: #f5222d;
+`
+
 export const CheckboxWrapper = styled.div`
    display: flex;
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
+
 const Users = require('../models/userSignupSchema');
 
 router.get('/api/:id/confirmEmail', (req, res) => {
@@ -18,6 +19,7 @@ router.post('/api/:id/confirmEmail', (req, res) => {
    
    Users.findOne({_id: body.id}, (err, data) => {
       const link = `http://${host}/auth/verify?id=${data._id}&apiKey=${data.key}`;
+      
       const mailOptions = {
          to : data.email,
          subject : "Please confirm your Email account",
@@ -37,6 +39,7 @@ router.post('/api/:id/confirmEmail', (req, res) => {
             pass: "Dawidov121"
          }
       });
+
       transporter.sendMail(mailOptions, (error, response) => {
          if(error) console.log(error);
          else console.log("Message sent: " + response.message);

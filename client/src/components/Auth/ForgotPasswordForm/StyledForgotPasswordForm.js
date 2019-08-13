@@ -51,12 +51,11 @@ export const FieldWrapper = styled.div`
    }
 `
 
-export const Error = styled.p`
+export const Response = styled.p`
    margin-right: auto;
    margin-left: 5px;
    font-family: 'segoe';
    font-size: 14px;
-   color: #f5222d;
 `
 
 export const Button = styled.button`

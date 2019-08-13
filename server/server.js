@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const uuid = require('uuid');
 
 const config = require('./config');
 
 // zaimportowane pliki routów
-const authRouter = require('./routes/auth');
+const loginRouter = require('./routes/auth/login');
+const signupRouter = require('./routes/auth/signup');
+const verifyRouter = require('./routes/auth/verify');
+const forgotPasswordRouter = require('./routes/auth/forgotPassword');
 const userRouter = require('./routes/user');
 
 const mongoose = require('mongoose');
@@ -22,13 +23,16 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded());
 app.use(express.static(
    path.join(__dirname, 'public')
 ));
 
 // Używanie tych routów
-app.use(authRouter);
+app.use(loginRouter);
+app.use(signupRouter);
+app.use(verifyRouter);
+app.use(forgotPasswordRouter);
 app.use(userRouter);
 
 const port = process.env.PORT || 5000;

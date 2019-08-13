@@ -15,6 +15,10 @@ const Bookings = (props) => {
       })
       // Bookings będzie wyświetlać już samo bookings w tym przypadku sam ten tekst w div
       // Sciagniecie do reduxowego storea email bo wszystkie dzialania beda identyfikowane poprzez email lub wmongoSB zrobic referencje do usera
+      
+      // UPDATE 2019-08-13
+      //-----------------------------------------------------------------------------------
+      // ZAMIAST DO REDUXA EMAIL TO EMAIL DAC DO JWT CZYLI OBIEKTU JSONA WEB TOKENU
    })
 
    return (  

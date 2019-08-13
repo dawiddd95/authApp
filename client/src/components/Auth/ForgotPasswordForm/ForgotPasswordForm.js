@@ -3,7 +3,8 @@ import {Form, Field, ErrorMessage} from 'formik';
 
 import * as S from './StyledForgotPasswordForm';
 
-const ForgotPasswordForm = ({err, handleOnInput}) => {
+const ForgotPasswordForm = ({responseText, success, handleOnInput}) => {
+   const color = success ? {'color': '#2aa61c'} : {'color': '#f5222d'};
    return (  
       <S.Wrapper>
          <Form>
@@ -18,9 +19,9 @@ const ForgotPasswordForm = ({err, handleOnInput}) => {
                   name='email' 
                   component='p' 
                />
-               <S.Error>
-                  {err}
-               </S.Error>
+               <S.Response style={color}>
+                  {responseText}
+               </S.Response>
             </S.FieldWrapper>
             <S.Button type='submit'>Send password reset email</S.Button>
          </Form>

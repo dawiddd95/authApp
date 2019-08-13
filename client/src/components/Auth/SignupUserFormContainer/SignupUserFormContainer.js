@@ -11,6 +11,11 @@ const LoginUserFormContainer = () => {
    // Wtedy te dane bedziemy mogli sobie swobodnie z reduxa odebrac gdziekolwiek
    // Wtedy redirect byc moze nie bedzie potrzebował tego obiektu state:
 
+
+   // UPDATE 2019-08-13
+   // -------------------------------------------------------------------------
+   // DANE O ZALOGOWANYM USERZE WCIAZ MOZEMY DAC DO REDUXA, ALE TE DANE NIECH POBIERA Z BAZY DANYCH PIERWSZY KOMPONENT PO ZALOGOWANIU POPRAWNYM (CZYLI VerifyUser) I TO ON NIECH DISPATCHUJE WSZYSTKO DO REDUXA => NAME, SURNAME, email, ACTIVE   lub wrzucic to do  JWT
+
    const [redirect, setRedirect] = React.useState('');
    const [email, setEmail] = React.useState('');
    const [id, setId] = React.useState('');

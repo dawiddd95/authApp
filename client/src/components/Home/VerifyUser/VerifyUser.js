@@ -5,6 +5,7 @@ import AuthEmailVerified from '../../Auth/AuthEmailVerified/AuthEmailVerified';
 import Bookings from '../Bookings/Bookings';
 
 // odkomentowac calosC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// TUTAJ BEDZIE REDUX lub JWT
 
 
 // const VerifyUser = (props) => {

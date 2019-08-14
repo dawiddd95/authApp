@@ -40,14 +40,13 @@ router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
    if(errors.isEmpty()) {
       User.findOne({email: body.email}, (err, data) => {
          if(data === null) {
-            userData.save(err => console.log(err))
             transporter.sendMail(mailOptions, (error, response) => {
                if(error) console.log(error);
-               else console.log("Message sent: " + response.message);
+               else userData.save(err => console.log(err))
             });
-            res.json({success: true, err: '', id: userData._id})      
+            res.json({success: true, err: '', email: userData.email})      
          } else {
-            res.json({success: false, err: 'Email is already in usage'})
+            res.json({success: false, err: 'Email is already in usage', email: ''})
          }
       });
    } else {

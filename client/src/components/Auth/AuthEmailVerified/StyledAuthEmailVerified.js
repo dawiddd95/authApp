@@ -1,64 +1,39 @@
 import styled from 'styled-components';
+import background from '../../../assets/img/emailunverified.jpg';
 
 export const Wrapper = styled.div`
    width: 100%;
    height: 100%;
-   background-color: #F0F2F5;
-   overflow-y: hidden;
-
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-`
-
-export const Nav = styled.nav`
-   width: 100%;
-   height: 60px;
-   background-color: white;
-   font-family: segoe;
-
+   background-image: url(${background});
+   background-size: cover;
+   background-position: center;
    display: flex;
    justify-content: flex-end;
-   align-items: center;
-`
-
-export const Logout = styled.div`
-   padding-right: 30px;
-
-   display: flex;
-   align-items: center;
-`
-
-export const Img = styled.img`
-   width: 20px;
-   height: 20px;
-   margin-right: 10px;
-`
-
-export const Main = styled.main`
-   width: 100%;
-   height: 90vh;
-`
-
-export const Box = styled.div`
-   width: 600px;
-   height: 300px;
-   margin: 60px auto 0 auto;
-   background-color: white;
-   border-radius: 5px;
-
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
 `
 
 export const Content = styled.div`
-   width: 80%;
-   margin: 100% auto 100% auto;
+   width: 500px;
+   height: 100%;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+`
+
+export const Header = styled.h1`
+   margin-top: 60px;
+   font-weight: 600;
+   font-size: 24px;
+   font-family: segoe;
+   color: rgba(0,0,0,0.85);
+   text-align: center;
+`
+
+export const Text = styled.div`
+   width: 90%;
+   margin: 50px auto 30px auto;
+   text-align: center;
    font-size: 16px;
    font-family: segoe;
-   
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
@@ -72,7 +47,7 @@ export const Span = styled.span`
 export const Button = styled.button`
    width: 80%;
    height: 40px;
-   margin-top: 60px;
+   margin: 0 auto 25px auto;
    padding: 0 15px;
    font-size: 16px;
    font-family: segoe;
@@ -93,6 +68,29 @@ export const Button = styled.button`
    }
 `
 
-export const Information = styled.p`
-   margin-top: 30px;
+export const LinkWrapper = styled.div`
+   margin-top: 10px;
+   
+   display: flex;
+   justify-content: center;
+
+   a {
+      width: 70%;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid red;
+      border-radius: 4px;
+      background-color: #f5222d;
+      color: white;
+      font-size: 16px;
+      font-family: segoe;
+      text-decoration: none;
+      transition: .3s;
+      
+      :hover {
+         background-color: #ff4d4f;
+         border-color: #ff4d4f;
+         transition: .3s;
+      }
+   }
 `

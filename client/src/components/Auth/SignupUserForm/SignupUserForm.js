@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Field, ErrorMessage} from 'formik';
+import {Link} from 'react-router-dom';
 
 import * as S from './StyledSignupUserForm';
 
@@ -67,6 +68,11 @@ const SignupUserForm = ({err, handleOnInput}) => {
                />
             </S.FieldWrapper>        
             <S.Button type='submit'>Sign up</S.Button>
+            <S.LinkWrapper>
+               <Link to='/auth/login'>
+                  Already have an account? Log in.
+               </Link>
+            </S.LinkWrapper>
          </Form>
       </S.Wrapper>
    );

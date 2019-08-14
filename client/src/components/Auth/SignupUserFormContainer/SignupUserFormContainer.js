@@ -2,35 +2,21 @@ import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
 
 import SignupUserForm from '../SignupUserForm/SignupUserForm';
+import AuthEmailVerified from '../AuthEmailVerified/AuthEmailVerified';
 
-const LoginUserFormContainer = () => {
-   // Podczas udanej rejestracji pobrac do redux jako loggedUser: name, surname, email, id, active. Czyli dispatchowac zamienic pusty obiekt loggedUser: {} na => loggedUser: {name: 's', surname: 'sdd' ...}
-   // Wtedy te dane bedziemy mogli sobie swobodnie z reduxa odebrac gdziekolwiek
-   // Wtedy redirect byc moze nie bedzie potrzebował tego obiektu state:
-
-
-   // UPDATE 2019-08-13
-   // -------------------------------------------------------------------------
-   // DANE O ZALOGOWANYM USERZE WCIAZ MOZEMY DAC DO REDUXA, ALE TE DANE NIECH POBIERA Z BAZY DANYCH PIERWSZY KOMPONENT PO ZALOGOWANIU POPRAWNYM (CZYLI VerifyUser) I TO ON NIECH DISPATCHUJE WSZYSTKO DO REDUXA => NAME, SURNAME, email, ACTIVE   lub wrzucic to do  JWT
-
-   const [redirect, setRedirect] = React.useState('');
+const SignupUserFormContainer = () => {
+   const [success, setSuccess] = React.useState('');
    const [email, setEmail] = React.useState('');
-   const [id, setId] = React.useState('');
    const [err, setErr] = React.useState('');
 
    const handleOnSubmit = values => {
       axios.post('/api/auth/signup', values)
       .then(res => {
-         if(res.data.success) {
-            setEmail(res.data.email);
-            setId(res.data.id)
-            setRedirect(true);
-         } else {
-            setErr(res.data.err)
-         }
+         setErr(res.data.err);
+         setEmail(res.data.email);
+         setSuccess(res.data.success);
       })
    }
 
@@ -40,11 +26,8 @@ const LoginUserFormContainer = () => {
 
    return ( 
       <div>
-         {redirect ? (
-               <Redirect to={{
-                  pathname: `/${id}/bookings`,
-                  state: {email: email, id}
-               }} />
+         {success ? (
+               <AuthEmailVerified email={email} />
             ) : ( 
                <Formik
                   render={props => <SignupUserForm {...props} err={err} handleOnInput={handleOnInput} />}
@@ -89,4 +72,4 @@ const LoginUserFormContainer = () => {
    );
 }
  
-export default LoginUserFormContainer;
+export default SignupUserFormContainer;

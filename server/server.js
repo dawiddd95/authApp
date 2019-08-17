@@ -10,7 +10,7 @@ const loginRouter = require('./routes/auth/login');
 const signupRouter = require('./routes/auth/signup');
 const verifyRouter = require('./routes/auth/verify');
 const forgotPasswordRouter = require('./routes/auth/forgotPassword');
-const userRouter = require('./routes/user');
+const loggedUserRouter = require('./routes/user/loggedUser');
 
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true)
@@ -33,7 +33,7 @@ app.use(loginRouter);
 app.use(signupRouter);
 app.use(verifyRouter);
 app.use(forgotPasswordRouter);
-app.use(userRouter);
+app.use(loggedUserRouter);
 
 const port = process.env.PORT || 5000;
 

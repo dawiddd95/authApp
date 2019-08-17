@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import {Form, Field, ErrorMessage} from 'formik';
+import {Link} from 'react-router-dom';
 
 export const Wrapper = styled.div`
    width: 85%;
    height: 100%;
    margin: 45px auto 20px auto;
+`
 
-   form {
-      width: 100%;
-   }
+export const StyledForm = styled(Form)`
+   width: 100%
 `
 
 export const FieldWrapper = styled.div`
@@ -18,37 +20,38 @@ export const FieldWrapper = styled.div`
 
    display: flex;
    flex-direction: column;
+`
 
-   input {
-      height: 40px;
-      padding: 0 15px;
-      border: 0;
-      outline: 0;
-      border: 1px solid #d9d9d9;   
-      border-radius: 5px;
-      font-weight: 200;
-      font-size: 16px;
-      color: rgba(0,0,0,0.65);
+export const StyledField = styled(Field)`
+   width: ${props => props.checkboxstyle ? '18px' : 'auto'}
+   height: ${props => props.checkboxstyle ? '18px' : '40px'};
+   padding: 0 15px;
+   border: 0;
+   outline: 0;
+   border: 1px solid #d9d9d9;   
+   border-radius: 5px;
+   font-weight: 200;
+   font-size: 16px;
+   color: rgba(0,0,0,0.65);
+   transition: 0.3s;
+
+   &:hover {
       transition: 0.3s;
-
-      &:hover {
-         transition: 0.3s;
-         border: 1px solid #f5222d;
-      }
-   
-      &:focus {
-         border: 1px solid #f5222d;
-         box-shadow: 0 0 0 2px rgba(245,34,45,0.2);
-      }
+      border: 1px solid #f5222d;
    }
 
-   p {
-      margin-right: auto;
-      margin-left: 5px;
-      font-family: 'segoe';
-      font-size: 14px;
-      color: #f5222d;
+   &:focus {
+      border: 1px solid #f5222d;
+      box-shadow: ${props => props.checkboxstyle ? 'none' : '0 0 0 2px rgba(245,34,45,0.2)'};
    }
+`
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+   margin-right: auto;
+   margin-left: 5px;
+   font-family: 'segoe';
+   font-size: 14px;
+   color: #f5222d;
 `
 
 export const Error = styled.p`
@@ -61,11 +64,6 @@ export const Error = styled.p`
 
 export const CheckboxWrapper = styled.div`
    display: flex;
-
-   input {
-      width: 18px;
-      height: 18px;
-   }
 `
 
 export const Label = styled.label`
@@ -75,20 +73,17 @@ export const Label = styled.label`
    color: rgba(0,0,0,0.65);
 `
 
-export const ForgotPassword = styled.div`
+export const StyledLink = styled(Link)`
    margin-left: auto;
+   color: #f5222d;
+   text-decoration: none;
+   font-family: segoe;
+   font-size: 14px;
+   transition: .3s;
 
-   a {    
-      color: #f5222d;
-      text-decoration: none;
-      font-family: segoe;
-      font-size: 14px;
+   :hover {
+      color: rgba(245,34,45,0.8);
       transition: .3s;
-
-      :hover {
-         color: rgba(245,34,45,0.8);
-         transition: .3s;
-      }
    }
 `
 

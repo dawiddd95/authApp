@@ -8,15 +8,16 @@ import LoginUserForm from '../LoginUserForm/LoginUserForm';
 
 const LoginUserFormContainer = () => {   
    const [success, setSuccess] = React.useState(false);
-   const [userEmail, setUserEmail] = React.useState('daw');
    const [err, setErr] = React.useState('');
+   const [id, setID] = React.useState('');
 
    const handleOnSubmit = values => {
       axios.post('/api/auth/login', values)
       .then(res => {
-         setUserEmail(res.data.email);
-         setErr(res.data.err);
-         setSuccess(res.data.success);
+         const {err, success, id} = res.data;
+         setID(id);
+         setErr(err);
+         setSuccess(success);
       })
    }
 
@@ -27,7 +28,7 @@ const LoginUserFormContainer = () => {
    return (  
       <div>
          {success ? (
-               <Redirect to={{pathname: '/bookings', payload: {email: userEmail}}} />
+               <Redirect to={`/user/${id}/bookings`} />
             ) : ( 
                <Formik
                   component={props => <LoginUserForm {...props} err={err} handleOnInput={handleOnInput} />}

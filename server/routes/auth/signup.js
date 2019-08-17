@@ -16,7 +16,6 @@ router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
    });
    const host = req.get('host');
    const link = `http://${host}/auth/verify?id=${userData._id}&apiKey=${userData.key}`;
-
    const mailOptions = {
       to : body.email,
       subject : "Please confirm your Email account",

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import * as S from './StyledAuthLogin';
 
 import LoginUserFormContainer from '../LoginUserFormContainer/LoginUserFormContainer';
@@ -14,11 +13,9 @@ const AuthLogin = () => {
             </S.Header>
             <LoginUserFormContainer />
             <AuthSocialLogin />
-            <S.LinkWrapper>
-               <Link to='/auth/signup'>
-                  Create an account
-               </Link>
-            </S.LinkWrapper>
+            <S.StyledLink to='/auth/signup'>
+               Create an account
+            </S.StyledLink>
          </S.Content>
       </S.Wrapper>
    );

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import * as S from './StyledAuthEmailVerified';
 
@@ -17,11 +16,9 @@ const AuthEmailVerified = ({email}) => {
                   check your spam folder.
                </S.Span>
             </S.Text>
-            <S.LinkWrapper>
-               <Link to='/auth/login'>
-                  Back to login page
-               </Link>
-            </S.LinkWrapper>
+            <S.StyledLink to='/auth/login'>
+               Back to login page
+            </S.StyledLink>
          </S.Content>
       </S.Wrapper>
    );

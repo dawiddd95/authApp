@@ -12,8 +12,9 @@ const ForgotPasswordFormContainer = () => {
    const handleOnSubmit = values => {
       axios.post('/api/auth/forgot-password', values)
       .then(res => {
-         setResponseText(res.data.text);
-         setSuccess(res.data.success);
+         const {text, success} = res.data;
+         setSuccess(success);
+         setResponseText(text);
       })
    }
 

@@ -10,8 +10,7 @@ router.post('/api/auth/forgot-password', (req, res) => {
    const newPassword = `#${uuid.v4()}`;
    User.findOneAndUpdate({email: body.email, active: true}, {password: newPassword}, (err, data) => {
       if(data !== null) {
-         const email = data.email;
-         
+         const email = data.email;  
          const mailOptions = {
             to : email,
             subject : "Reset your password for company managment app",
@@ -26,8 +25,7 @@ router.post('/api/auth/forgot-password', (req, res) => {
                Thanks,<br>
                Your company managment app team.
             `
-         };
-         
+         };        
          const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -35,7 +33,6 @@ router.post('/api/auth/forgot-password', (req, res) => {
                pass: "Dawidov121"
             }
          });
-
          transporter.sendMail(mailOptions, (error, response) => {
             if(error) console.log(error);
             else console.log("Message sent: " + response.message);

@@ -11,3 +11,10 @@ const signschema = new Schema({
 });
 
 module.exports = mongoose.model('signmodel', signschema);
+
+// W Schemacie bookings musze ogarnac jakas referencje do Tego schematu uzytkownika
+// i wtedy np:
+// id: referencja do user id
+// name: nazwa pracownika
+// age: wiek pracownika
+// workstate: typ wykonywanej pracy

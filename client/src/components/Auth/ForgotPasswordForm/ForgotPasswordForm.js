@@ -1,30 +1,28 @@
 import React from 'react';
-import {Form, Field, ErrorMessage} from 'formik';
 
 import * as S from './StyledForgotPasswordForm';
 
 const ForgotPasswordForm = ({responseText, success, handleOnInput}) => {
-   const color = success ? {'color': '#2aa61c'} : {'color': '#f5222d'};
    return (  
       <S.Wrapper>
-         <Form>
+         <S.StyledForm>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   name='email' 
                   type='text' 
                   placeholder='Email' 
                   onInput={handleOnInput}
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage 
                   name='email' 
-                  component='p' 
+                  component='div' 
                />
-               <S.Response style={color}>
+               <S.Response successfully={success}>
                   {responseText}
                </S.Response>
             </S.FieldWrapper>
             <S.Button type='submit'>Send password reset email</S.Button>
-         </Form>
+         </S.StyledForm>
       </S.Wrapper>
    );
 }

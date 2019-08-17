@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import AuthRoutes from './AuthRoutes';
-import FetchLoggedUser from '../app/users/containers/FetchLoggedUser/FetchLoggedUser';
+import UserRoutes from './UserRoutes';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 
 const RootRoutes = () => {
@@ -11,7 +11,7 @@ const RootRoutes = () => {
          <Switch>
             <Route exact path='/' render={() => <Redirect to='/auth/login' />} />
             <Route path='/auth' component={AuthRoutes} /> 
-            <Route path='/bookings' component={FetchLoggedUser} />
+            <Route path='/user' component={UserRoutes} />
             <Route component={ErrorPage} />
          </Switch>
       </Router>

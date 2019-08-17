@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import * as S from './StyledAuthForgotPassword';
 
+import * as S from './StyledAuthForgotPassword';
 import ForgotPasswordFormContainer from '../ForgotPasswordFormContainer/ForgotPasswordFormContainer';
 
 const AuthForgotPassword = () => {
@@ -12,11 +11,9 @@ const AuthForgotPassword = () => {
                Company Managment App
             </S.Header>
             <ForgotPasswordFormContainer />
-            <S.LinkWrapper>
-               <Link to='/auth/login'>
-                  Cancel
-               </Link>
-            </S.LinkWrapper>
+            <S.StyledLink to='/auth/login'>
+               Cancel
+            </S.StyledLink>
          </S.Content>
       </S.Wrapper>
    );

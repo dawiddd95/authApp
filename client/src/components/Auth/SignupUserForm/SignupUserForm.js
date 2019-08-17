@@ -1,43 +1,41 @@
 import React from 'react';
-import {Form, Field, ErrorMessage} from 'formik';
-import {Link} from 'react-router-dom';
 
 import * as S from './StyledSignupUserForm';
 
 const SignupUserForm = ({err, handleOnInput}) => {
    return (  
       <S.Wrapper>
-         <Form>
+         <S.StyledForm>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   name='name' 
                   type='text' 
                   placeholder='Name' 
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage 
                   name='name' 
                   component='p' 
                />
             </S.FieldWrapper>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   name='surname' 
                   type='text' 
                   placeholder='Surname' 
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage 
                   name='surname' 
                   component='p' 
                />
             </S.FieldWrapper>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   onInput={handleOnInput}
                   name='email' 
                   type='text' 
                   placeholder='Email' 
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage  
                   name='email' 
                   component='p' 
                />
@@ -46,34 +44,34 @@ const SignupUserForm = ({err, handleOnInput}) => {
                </S.Error>
             </S.FieldWrapper>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   name='password' 
                   type='password' 
                   placeholder='Password' 
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage 
                   name='password' 
                   component='p' 
                />
             </S.FieldWrapper>
             <S.FieldWrapper>
-               <Field 
+               <S.StyledField 
                   name='confirmPassword' 
                   type='password' 
                   placeholder='Confirm password' 
                />
-               <ErrorMessage 
+               <S.StyledErrorMessage 
                   name='confirmPassword' 
                   component='p' 
                />
             </S.FieldWrapper>        
             <S.Button type='submit'>Sign up</S.Button>
             <S.LinkWrapper>
-               <Link to='/auth/login'>
+               <S.StyledLink to='/auth/login'>
                   Already have an account? Log in.
-               </Link>
+               </S.StyledLink>
             </S.LinkWrapper>
-         </Form>
+         </S.StyledForm>
       </S.Wrapper>
    );
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 import background from '../../../assets/img/forgot.png';
 
 export const Wrapper = styled.div`
@@ -32,22 +33,17 @@ export const Header = styled.h1`
    text-align: center;
 `
 
-export const LinkWrapper = styled.div`
-   margin-top: 20px;
-   
-   display: flex;
-   justify-content: center;
+export const StyledLink = styled(Link)`
+   margin: 20px auto 0 auto;
+   color: #f5222d;
+   text-align: center;
+   font-size: 16px;
+   font-family: segoe;
+   text-decoration: none;
+   transition: .3s;
 
-   a {
-      color: #f5222d;
-      font-size: 16px;
-      font-family: segoe;
-      text-decoration: none;
+   :hover {
+      color: color: rgba(245,34,45,0.8);
       transition: .3s;
-
-      :hover {
-         color: color: rgba(245,34,45,0.8);
-         transition: .3s;
-      }
    }
 `

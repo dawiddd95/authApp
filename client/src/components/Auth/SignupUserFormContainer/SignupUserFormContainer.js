@@ -7,16 +7,17 @@ import SignupUserForm from '../SignupUserForm/SignupUserForm';
 import AuthEmailVerified from '../AuthEmailVerified/AuthEmailVerified';
 
 const SignupUserFormContainer = () => {
-   const [success, setSuccess] = React.useState('');
+   const [success, setSuccess] = React.useState(false);
    const [email, setEmail] = React.useState('');
    const [err, setErr] = React.useState('');
 
    const handleOnSubmit = values => {
       axios.post('/api/auth/signup', values)
       .then(res => {
-         setErr(res.data.err);
-         setEmail(res.data.email);
-         setSuccess(res.data.success);
+         const {err, email, success} = res.data;
+         setErr(err);
+         setEmail(email);
+         setSuccess(success);
       })
    }
 

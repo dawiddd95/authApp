@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import {Form, Field, ErrorMessage} from 'formik';
+import {Link} from 'react-router-dom';
 
 export const Wrapper = styled.div`
    width: 85%;
    height: 100%;
    margin: 45px auto 20px auto;
+`
 
-   form {
-      width: 100%;
-   }
+export const StyledForm = styled(Form)`
+   width: 100%;
 `
 
 export const FieldWrapper = styled.div`
@@ -19,37 +21,37 @@ export const FieldWrapper = styled.div`
 
    display: flex;
    flex-direction: column;
+`
 
-   input {
-      height: 40px;
-      padding: 0 15px;
-      border: 0;
-      outline: 0;
-      border: 1px solid #d9d9d9;   
-      border-radius: 5px;
-      font-weight: 200;
-      font-size: 16px;
-      color: rgba(0,0,0,0.65);
+export const StyledField = styled(Field)`
+   height: 40px;
+   padding: 0 15px;
+   border: 0;
+   outline: 0;
+   border: 1px solid #d9d9d9;   
+   border-radius: 5px;
+   font-weight: 200;
+   font-size: 16px;
+   color: rgba(0,0,0,0.65);
+   transition: 0.3s;
+
+   &:hover {
       transition: 0.3s;
-
-      &:hover {
-         transition: 0.3s;
-         border: 1px solid #f5222d;
-      }
-   
-      &:focus {
-         border: 1px solid #f5222d;
-         box-shadow: 0 0 0 2px rgba(245,34,45,0.2);
-      }
+      border: 1px solid #f5222d;
    }
 
-   p {
-      margin-right: auto;
-      margin-left: 5px;
-      font-family: 'segoe';
-      font-size: 14px;
-      color: #f5222d;
+   &:focus {
+      border: 1px solid #f5222d;
+      box-shadow: 0 0 0 2px rgba(245,34,45,0.2);
    }
+`
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+   margin-right: auto;
+   margin-left: 5px;
+   font-family: 'segoe';
+   font-size: 14px;
+   color: #f5222d;
 `
 
 export const Error = styled.p`
@@ -90,17 +92,17 @@ export const LinkWrapper = styled.div`
    
    display: flex;
    justify-content: center;
+`
 
-   a {
-      color: #f5222d;
-      font-size: 16px;
-      font-family: segoe;
-      text-decoration: none;
+export const StyledLink = styled(Link)`
+   color: #f5222d;
+   font-size: 16px;
+   font-family: segoe;
+   text-decoration: none;
+   transition: .3s;
+
+   :hover {
+      color: color: rgba(245,34,45,0.8);
       transition: .3s;
-
-      :hover {
-         color: color: rgba(245,34,45,0.8);
-         transition: .3s;
-      }
    }
 `

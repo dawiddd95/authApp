@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
    background-size: cover;
    background-position: center;
 
-
    display: flex;
    justify-content: flex-end;
 `

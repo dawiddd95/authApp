@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require('../../models/userSignupSchema');
 
 router.get('/auth/verify', (req, res) => {
-   const {id, apiKey} = req.query;np
+   const {id, apiKey} = req.query;
    const host = req.get('host');
    const link = `${req.protocol}://${host}`;
 

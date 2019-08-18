@@ -14,7 +14,7 @@ const LoginUserFormContainer = () => {
    const handleOnSubmit = values => {
       axios.post('/api/auth/login', values)
       .then(res => {
-         const {err, success, id} = res.data;
+         const {err, success, id, token} = res.data;
          setID(id);
          setErr(err);
          setSuccess(success);

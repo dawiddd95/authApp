@@ -1,49 +1,41 @@
+// TUTAJ SIE CHYBA TWORZY TOKEN !!!!!!!!!!!!!!!!!!!!!11
+// ---------------------------------------------------------
+
 const express = require('express');
 const router = express.Router();
 const {validationResult} = require('express-validator');
 const uuid = require('uuid');
-const nodemailer = require("nodemailer");
+const bcrypt = require('bcrypt');
 
 const User = require('../../models/userSignupSchema');
-const {signupValidationSchema} = require('../../validations/signupValidationSchema');
+const {signupValidationSchema} = require('../../utils/validations/signup');
+const emailSettings = require('../../utils/emails/verifyEmail');
+const {transporter} = require('../../utils/emails/transporter'); //dajemy w obiekt jesli chcemy uzyc funkcji dla tego obiektu
 
 router.post('/api/auth/signup', signupValidationSchema, (req, res) => {
+   const {name, surname, email, password, active} = req.body;
+
+   const key = uuid.v4();
+   const userID = new User()._id;
+   const link = `http://${req.get('host')}/auth/verify?id=${userID}&apiKey=${key}`;
+   const options = emailSettings(email, link);
    const errors = validationResult(req);
-   const body = req.body;
-   const userData = new User({
-      ...body, 
-      key: uuid.v4()
-   });
-   const host = req.get('host');
-   const link = `http://${host}/auth/verify?id=${userData._id}&apiKey=${userData.key}`;
-   const mailOptions = {
-      to : body.email,
-      subject : "Please confirm your Email account",
-      html : `
-         Hello,<br> 
-         Follow this link to verify your email address.<br>
-         <a href=${link}>${link}</a><br>
-         If you didn’t ask to verify this address, you can ignore this email.<br>
-         Thanks,<br>
-         Your company managment app team.
-      `
-   };
-   const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-         user: "company.managment.app.team@gmail.com",
-         pass: "Dawidov121"
-      }
-   });
 
    if(errors.isEmpty()) {
-      User.findOne({email: body.email}, (err, data) => {
+      User.findOne({email}, (err, data) => {
          if(data === null) {
-            transporter.sendMail(mailOptions, (error, response) => {
+            transporter.sendMail(options.mailOptions, (error, response) => {
                if(error) console.log(error);
-               else userData.save(err => console.log(err))
+               else {
+                  bcrypt.hash(password, 10, (err, hashPassword) => {
+                     const signupUser = new User({
+                        _id: userID, name, surname, email, active, key, password: hashPassword
+                     });
+                     signupUser.save(err => console.log(err))
+                  })
+               }
             });
-            res.json({success: true, err: '', email: userData.email})      
+            res.json({success: true, err: '', email})      
          } else {
             res.json({success: false, err: 'Email is already in usage', email: ''})
          }

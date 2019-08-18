@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import background from '../../../assets/img/forgot.png';
 
+import colors from '../../../assets/colors';
+
 export const Wrapper = styled.div`
    width: 100%;
    min-height: 100vh;
@@ -35,7 +37,7 @@ export const Header = styled.h1`
 
 export const StyledLink = styled(Link)`
    margin: 20px auto 0 auto;
-   color: #f5222d;
+   color: ${colors.redColor};
    text-align: center;
    font-size: 16px;
    font-family: segoe;
@@ -43,7 +45,7 @@ export const StyledLink = styled(Link)`
    transition: .3s;
 
    :hover {
-      color: color: rgba(245,34,45,0.8);
+      color: rgba(245,34,45,0.8);
       transition: .3s;
    }
 `

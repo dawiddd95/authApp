@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 import background from '../../../assets/img/emailunverified.jpg';
+import colors from '../../../assets/colors';
 
 export const Wrapper = styled.div`
    width: 100%;
@@ -53,7 +54,7 @@ export const StyledLink = styled(Link)`
    text-align: center;
    border: 1px solid red;
    border-radius: 4px;
-   background-color: #f5222d;
+   background-color: ${colors.redColor};
    color: white;
    font-size: 16px;
    font-family: segoe;
@@ -61,8 +62,8 @@ export const StyledLink = styled(Link)`
    transition: .3s;
    
    :hover {
-      background-color: #ff4d4f;
-      border-color: #ff4d4f;
+      background-color: ${colors.hoverRedColor};
+      border-color: ${colors.hoverRedColor};
       transition: .3s;
    }
 `;

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {Form, Field, ErrorMessage} from 'formik';
 
+import colors from '../../../assets/colors';
+
 export const Wrapper = styled.div`
    width: 85%;
    height: 100%;
@@ -26,7 +28,7 @@ export const StyledField = styled(Field)`
    padding: 0 15px;
    border: 0;
    outline: 0;
-   border: 1px solid #d9d9d9;   
+   border: 1px solid ${colors.silverColor};   
    border-radius: 5px;
    font-weight: 200;
    font-size: 16px;
@@ -35,11 +37,11 @@ export const StyledField = styled(Field)`
 
    &:hover {
       transition: 0.3s;
-      border: 1px solid #f5222d;
+      border: 1px solid ${colors.redColor};
    }
 
    &:focus {
-      border: 1px solid #f5222d;
+      border: 1px solid ${colors.redColor};
       box-shadow: 0 0 0 2px rgba(245,34,45,0.2);
    }
 `
@@ -49,7 +51,7 @@ export const StyledErrorMessage = styled(ErrorMessage)`
    margin-left: 5px;
    font-family: 'segoe';
    font-size: 14px;
-   color: #f5222d;
+   color: ${colors.redColor};
 `
 
 export const Response = styled.p`
@@ -57,7 +59,7 @@ export const Response = styled.p`
    margin-left: 5px;
    font-family: 'segoe';
    font-size: 14px;
-   color: ${props => props.successfully ? '#2aa61c' : '#f5222d'};
+   color: ${props => props.successfully ? '#2aa61c' : colors.redColor};
 `
 
 export const Button = styled.button`
@@ -68,9 +70,9 @@ export const Button = styled.button`
    font-family: segoe;
    color: white;
    border: 0;
-   border-color: #f5222d;
+   border-color: ${colors.redColor};
    border-radius: 4px;
-   background-color: #f5222d;
+   background-color: ${colors.redColor};
    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
    outline: 0;
@@ -78,8 +80,8 @@ export const Button = styled.button`
    cursor: pointer;
 
    &:hover {
-      background-color: #ff4d4f;
-      border-color: #ff4d4f;
+      background-color: ${colors.hoverRedColor};
+      border-color: ${colors.hoverRedColor};
       transition: .3s;
    }
 `
